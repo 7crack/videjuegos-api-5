@@ -1,0 +1,96 @@
+{% extends "fragments/base.html" %}
+{% block title %}Editar {{ videojuego.titulo }}{% endblock %}
+
+{% block content %}
+<div class="min-vh-100" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    <div class="container py-5">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col">
+                <a href="/videojuegos/{{ videojuego.id }}" class="btn btn-outline-light mb-3">
+                    <i class="bi bi-arrow-left me-2"></i>Volver a detalles
+                </a>
+                <h1 class="display-4 fw-bold text-white mb-2">
+                    <i class="bi bi-pencil text-warning me-3"></i>
+                    Editar Videojuego
+                </h1>
+            </div>
+        </div>
+
+        <!-- Card Formulario -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card bg-dark border-0 shadow-lg">
+                    <div class="card-header bg-gradient py-4" style="background: linear-gradient(90deg, #ff9800 0%, #f57c00 100%);">
+                        <h3 class="text-white mb-0 fw-bold">
+                            <i class="bi bi-controller me-2"></i>Modificar Datos
+                        </h3>
+                    </div>
+
+                    <div class="card-body p-5">
+                        <form method="post" action="/videojuegos/{{ videojuego.id }}/editar">
+                            <!-- Título -->
+                            <div class="mb-4">
+                                <label for="titulo" class="form-label text-white fw-bold">
+                                    <i class="bi bi-controller me-2 text-warning"></i>Nombre del Juego
+                                </label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-lg bg-dark text-white border-secondary" 
+                                    id="titulo" 
+                                    name="titulo" 
+                                    value="{{ videojuego.titulo }}"
+                                    required
+                                    style="border-width: 2px;"
+                                >
+                            </div>
+
+                            <!-- Fecha de Salida -->
+                            <div class="mb-4">
+                                <label for="fecha_salida" class="form-label text-white fw-bold">
+                                    <i class="bi bi-calendar-event me-2 text-info"></i>Fecha de Salida
+                                </label>
+                                <input 
+                                    type="date" 
+                                    class="form-control form-control-lg bg-dark text-white border-secondary" 
+                                    id="fecha_salida" 
+                                    name="fecha_salida" 
+                                    value="{{ videojuego.fecha_lanzamiento }}"
+                                    required
+                                    style="border-width: 2px;"
+                                >
+                            </div>
+
+                            <!-- Género -->
+                            <div class="mb-4">
+                                <label for="genero" class="form-label text-white fw-bold">
+                                    <i class="bi bi-tags me-2 text-success"></i>Género
+                                </label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-lg bg-dark text-white border-secondary" 
+                                    id="genero" 
+                                    name="genero" 
+                                    value="{{ videojuego.genero }}"
+                                    required
+                                    style="border-width: 2px;"
+                                >
+                            </div>
+
+                            <!-- Botones -->
+                            <div class="d-flex justify-content-center gap-3 mt-5">
+                                <button type="submit" class="btn btn-warning btn-lg px-5">
+                                    <i class="bi bi-check-circle me-2"></i>Guardar Cambios
+                                </button>
+                                <a href="/videojuegos/{{ videojuego.id }}" class="btn btn-outline-light btn-lg px-5">
+                                    <i class="bi bi-x-circle me-2"></i>Cancelar
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

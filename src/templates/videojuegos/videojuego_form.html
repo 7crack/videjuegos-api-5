@@ -1,0 +1,113 @@
+{% extends "fragments/base.html" %}
+{% block title %}Nuevo Videojuego{% endblock %}
+
+{% block content %}
+<div class="min-vh-100" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    <div class="container py-5">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col">
+                <a href="/videojuegos" class="btn btn-outline-light mb-3">
+                    <i class="bi bi-arrow-left me-2"></i>Volver al listado
+                </a>
+                <h1 class="display-4 fw-bold text-white mb-2">
+                    <i class="bi bi-plus-circle text-success me-3"></i>
+                    Nuevo Videojuego
+                </h1>
+            </div>
+        </div>
+
+        <!-- Card Formulario -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card bg-dark border-0 shadow-lg">
+                    <!-- Header del Card -->
+                    <div class="card-header bg-gradient py-4" style="background: linear-gradient(90deg, #5e35b1 0%, #7c4dff 100%);">
+                        <h3 class="text-white mb-0 fw-bold">
+                            <i class="bi bi-controller me-2"></i>Datos del Videojuego
+                        </h3>
+                    </div>
+
+                    <!-- Body con Formulario -->
+                    <div class="card-body p-5">
+                        <form method="post" action="/videojuegos/new" enctype="application/x-www-form-urlencoded">
+                            <!-- Título -->
+                            <div class="mb-4">
+                                <label for="titulo" class="form-label text-white fw-bold">
+                                    <i class="bi bi-controller me-2 text-warning"></i>Nombre del Juego
+                                </label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-lg bg-dark text-white border-secondary" 
+                                    id="titulo" 
+                                    name="titulo" 
+                                    placeholder="Ej: The Legend of Zelda" 
+                                    required
+                                    style="border-width: 2px;"
+                                >
+                            </div>
+
+                            <!-- Fecha de Salida -->
+                            <div class="mb-4">
+                                <label for="fecha_salida" class="form-label text-white fw-bold">
+                                    <i class="bi bi-calendar-event me-2 text-info"></i>Fecha de Salida
+                                </label>
+                                <input 
+                                    type="date" 
+                                    class="form-control form-control-lg bg-dark text-white border-secondary" 
+                                    id="fecha_salida" 
+                                    name="fecha_salida" 
+                                    required
+                                    style="border-width: 2px;"
+                                >
+                            </div>
+
+                            <!-- Género -->
+                            <div class="mb-4">
+                                <label for="genero" class="form-label text-white fw-bold">
+                                    <i class="bi bi-tags me-2 text-success"></i>Género
+                                </label>
+                                <input 
+                                    type="text" 
+                                    class="form-control form-control-lg bg-dark text-white border-secondary" 
+                                    id="genero" 
+                                    name="genero" 
+                                    placeholder="Ej: Action, RPG, Adventure" 
+                                    required
+                                    style="border-width: 2px;"
+                                >
+                            </div>
+
+                            <!-- Botones de Acción -->
+                            <div class="d-flex justify-content-center gap-3 mt-5">
+                                <button type="submit" class="btn btn-success btn-lg px-5">
+                                    <i class="bi bi-check-circle me-2"></i>Guardar Videojuego
+                                </button>
+                                <a href="/videojuegos" class="btn btn-outline-light btn-lg px-5">
+                                    <i class="bi bi-x-circle me-2"></i>Cancelar
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Info Card -->
+                <div class="card bg-dark border-0 shadow-lg mt-4">
+                    <div class="card-body p-4 text-center">
+                        <i class="bi bi-info-circle text-info" style="font-size: 2rem;"></i>
+                        <p class="text-white-50 mb-0 mt-3">
+                            Completa todos los campos para añadir un nuevo videojuego a tu colección
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="bg-dark text-white-50 text-center py-4 mt-auto">
+    <p class="mb-0">© 2024 Videojuegos Inc. | Hecho con <i class="bi bi-heart-fill text-danger"></i></p>
+</footer>
+{% endblock %}

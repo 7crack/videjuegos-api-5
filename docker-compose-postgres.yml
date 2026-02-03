@@ -1,0 +1,34 @@
+name: fastapi-videojuegos-punto4
+
+services:
+  fastapi-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi-app-videojuegos-postgres
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - fastapi-db-postgres
+    environment:
+      DB_NAME: videojuegosdb
+      DB_USER: postgres
+      DB_PASSWORD: 1234
+      DB_PORT: 5432
+      DB_SERVER: fastapi-db-postgres
+
+  fastapi-db-postgres:
+    image: postgres:16
+    container_name: fastapi-db-postgres
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: postgres
+      POSTGRES_DB: videojuegosdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

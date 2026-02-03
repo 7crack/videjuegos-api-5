@@ -1,0 +1,82 @@
+{% extends "fragments/base.html" %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-dark text-light" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    <div class="row w-100">
+        <div class="col-lg-8 mx-auto">
+            <div class="text-center mb-5">
+                <h1 class="display-1 fw-bold mb-4" style="text-shadow: 0 0 20px rgba(94, 53, 177, 0.8);">
+                    🎮 Videojuegos DB
+                </h1>
+                <p class="lead text-white-50 mb-5">Tu base de datos definitiva de videojuegos</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Card Ver Videojuegos -->
+                <div class="col-md-6">
+                    <div class="card bg-gradient border-0 h-100 shadow-lg" style="background: linear-gradient(145deg, #5e35b1 0%, #7c4dff 100%); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="card-body text-center p-5">
+                            <div class="mb-4">
+                                <i class="bi bi-controller" style="font-size: 4rem;"></i>
+                            </div>
+                            <h3 class="card-title fw-bold mb-3">Lista de Videojuegos</h3>
+                            <p class="card-text mb-4">Explora nuestra colección completa de videojuegos</p>
+                            <a href="{{ url_for('ver_videojuegos') }}" class="btn btn-light btn-lg px-5 fw-bold">
+                                Ver Catálogo <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card API -->
+                <div class="col-md-6">
+                    <div class="card bg-gradient border-0 h-100 shadow-lg" style="background: linear-gradient(145deg, #00897b 0%, #26a69a 100%); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="card-body text-center p-5">
+                            <div class="mb-4">
+                                <i class="bi bi-code-slash" style="font-size: 4rem;"></i>
+                            </div>
+                            <h3 class="card-title fw-bold mb-3">API REST</h3>
+                            <p class="card-text mb-4">Accede a la documentación de nuestra API</p>
+                            <a href="/docs" class="btn btn-light btn-lg px-5 fw-bold">
+                                Ver Docs <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="row mt-5 g-3">
+                <div class="col-md-4">
+                    <div class="text-center p-3">
+                        <i class="bi bi-lightning-charge-fill text-warning" style="font-size: 2rem;"></i>
+                        <h5 class="mt-3 fw-bold">Rápido</h5>
+                        <p class="text-white-50 small">Búsquedas instantáneas</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center p-3">
+                        <i class="bi bi-shield-check text-success" style="font-size: 2rem;"></i>
+                        <h5 class="mt-3 fw-bold">Seguro</h5>
+                        <p class="text-white-50 small">Datos protegidos</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center p-3">
+                        <i class="bi bi-box-arrow-up-right text-info" style="font-size: 2rem;"></i>
+                        <h5 class="mt-3 fw-bold">API REST</h5>
+                        <p class="text-white-50 small">Totalmente integrable</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="bg-dark text-white-50 text-center py-4 mt-auto">
+    <p class="mb-0">© 2024 Videojuegos Inc. | Hecho con <i class="bi bi-heart-fill text-danger"></i> y FastAPI</p>
+</footer>
+{% endblock %}

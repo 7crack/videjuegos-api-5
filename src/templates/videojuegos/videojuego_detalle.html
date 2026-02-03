@@ -1,0 +1,124 @@
+{% extends "fragments/base.html" %}
+{% block title %}{{ videojuego.titulo }}{% endblock %}
+
+{% block content %}
+<div class="min-vh-100" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+  <!-- Header -->
+  <div class="container py-5">
+    <div class="row mb-4">
+      <div class="col">
+        <a href="/videojuegos" class="btn btn-outline-light mb-3">
+          <i class="bi bi-arrow-left me-2"></i>Volver al listado
+        </a>
+        <h1 class="display-4 fw-bold text-white mb-2">
+          <i class="bi bi-controller text-warning me-3"></i>
+          {{ videojuego.titulo }}
+        </h1>
+      </div>
+    </div>
+
+    <!-- Card Principal -->
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card bg-dark border-0 shadow-lg">
+          <!-- Header del Card -->
+          <div class="card-header bg-gradient py-4" style="background: linear-gradient(90deg, #5e35b1 0%, #7c4dff 100%);">
+            <h3 class="text-white mb-0 fw-bold">
+              <i class="bi bi-info-circle me-2"></i>Detalles del Videojuego
+            </h3>
+          </div>
+          
+          <!-- Body del Card -->
+          <div class="card-body p-5">
+            <div class="row g-4">
+              <!-- ID -->
+              <div class="col-md-6">
+                <div class="detail-box p-4 rounded-3" style="background: rgba(94, 53, 177, 0.1); border-left: 4px solid #7c4dff;">
+                  <label class="text-white-50 small text-uppercase fw-bold mb-2">
+                    <i class="bi bi-hash me-1"></i>ID
+                  </label>
+                  <h4 class="text-white fw-bold mb-0">
+                    <span class="badge bg-primary fs-6">{{ videojuego.id }}</span>
+                  </h4>
+                </div>
+              </div>
+
+              <!-- Género -->
+              <div class="col-md-6">
+                <div class="detail-box p-4 rounded-3" style="background: rgba(0, 137, 123, 0.1); border-left: 4px solid #26a69a;">
+                  <label class="text-white-50 small text-uppercase fw-bold mb-2">
+                    <i class="bi bi-tags me-1"></i>Género
+                  </label>
+                  <h4 class="mb-0">
+                    <span class="badge bg-success fs-6">{{ videojuego.genero }}</span>
+                  </h4>
+                </div>
+              </div>
+
+              <!-- Título -->
+              <div class="col-12">
+                <div class="detail-box p-4 rounded-3" style="background: rgba(245, 124, 0, 0.1); border-left: 4px solid #ff9800;">
+                  <label class="text-white-50 small text-uppercase fw-bold mb-2">
+                    <i class="bi bi-controller me-1"></i>Título Completo
+                  </label>
+                  <h4 class="text-white fw-bold mb-0">{{ videojuego.titulo }}</h4>
+                </div>
+              </div>
+
+              <!-- Fecha Lanzamiento -->
+              <div class="col-12">
+                <div class="detail-box p-4 rounded-3" style="background: rgba(33, 150, 243, 0.1); border-left: 4px solid #2196f3;">
+                  <label class="text-white-50 small text-uppercase fw-bold mb-2">
+                    <i class="bi bi-calendar-event me-1"></i>Fecha de Lanzamiento
+                  </label>
+                  <h4 class="text-white fw-bold mb-0">
+                    <i class="bi bi-calendar3 text-info me-2"></i>
+                    {{ videojuego.fecha_lanzamiento }}
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer con Acciones -->
+          <div class="card-footer bg-transparent border-top border-secondary py-4">
+            <div class="d-flex justify-content-center gap-3">
+              <a href="/videojuegos/{{ videojuego.id }}/editar" class="btn btn-warning btn-lg px-4">
+                <i class="bi bi-pencil me-2"></i>Editar
+              </a>
+              <button onclick="confirmarEliminar({{ videojuego.id }})" class="btn btn-danger btn-lg px-4">
+                <i class="bi bi-trash me-2"></i>Eliminar
+              </button>
+              <a href="/videojuegos" class="btn btn-outline-light btn-lg px-4">
+                <i class="bi bi-arrow-left me-2"></i>Volver
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function confirmarEliminar(id) {
+    if (confirm('¿Estás seguro de que quieres eliminar este videojuego?')) {
+        fetch(`/videojuegos/${id}`, {
+            method: 'DELETE'
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/videojuegos';
+            } else {
+                alert('Error al eliminar el videojuego');
+            }
+        });
+    }
+}
+</script>
+{% endblock %}
+
+{% block footer %}
+<footer class="bg-dark text-white-50 text-center py-4 mt-auto">
+  <p class="mb-0">© 2024 Videojuegos Inc. | Hecho con <i class="bi bi-heart-fill text-danger"></i></p>
+</footer>
+{% endblock %}
