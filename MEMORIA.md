@@ -1,25 +1,40 @@
 # Documentación Técnica - Proyecto Videojuegos API
 
-## 5. Arquitectura con Render
+## 5. Despliegue en Render
 
-El proyecto implementa una arquitectura multi-contenedor utilizando Docker y Docker Compose, migrando de MySQL a PostgreSQL y manteniendo la separación entre aplicación y base de datos para mejorar la escalabilidad y el aislamiento.
+El proyecto se despliega en Render utilizando dos servicios independientes: un Web Service para la aplicación FastAPI y una base de datos PostgreSQL gestionada.
 
-**Componentes implementados:**
-- **Contenedor de aplicación**: FastAPI con Python 3.11, expone el puerto 8000
-- **Contenedor de base de datos**: PostgreSQL 16, almacenamiento persistente mediante volúmenes
-- **Red Docker**: Comunicación interna entre contenedores mediante red bridge
+**Arquitectura en Render:**
+- **Web Service**: Contenedor Docker con FastAPI (puerto 8000)
+- **PostgreSQL Database**: Base de datos gestionada por Render
+- **Comunicación**: Internal Database URL proporcionada por Render
 
 **Configuración de la base de datos:**
-- Host: `fastapi-db-postgres` (nombre del servicio en Docker Compose)
-- Puerto interno: 5432
-- Persistencia de datos mediante volumen nombrado `postgres_data`
-- Variables de entorno para credenciales (usuario, contraseña, base de datos)
+- Servicio PostgreSQL independiente creado en Render
+- Conexión mediante Internal Database URL
+- Variable de entorno `DATABASE_URL` configurada en el Web Service
+- PostgreSQL 16 con almacenamiento persistente gestionado por Render
 
-**Cambios realizados:**
-- Migración de MySQL a PostgreSQL 16
-- Cambio de driver de `pymysql` a `psycopg2-binary`
-- Actualización de cadena de conexión a formato PostgreSQL
-- Ajuste de puerto de 3306 a 5432
+**Pasos para desplegar:**
+1. **Crear PostgreSQL Database en Render:**
+   - Dashboard → New → Postgre
+   - Configurar nombre, región y plan (Free disponible)
+   - Copiar la Internal Database URL generada
+   ![alt text](videojuegos-db-punto5-1.png)
+   ![alt text](videojuegos-db-punto5-2.png)
+   ![alt text](videojuegos-db-punto5-3.png)
+   ![alt text](videojuegos-db-punto5-4.png)
+   ![alt text](videojuegos-db-punto5-5.png)
+2. **Configurar Web Service:**
+   - Crear nuevo Web Service desde repositorio Git
+   - Configurar variable de entorno: `DATABASE_URL=<internal-database-url>`
+   - Render detecta automáticamente el Dockerfile y despliega
+   ![alt text](videojuegos-db-punto5-6.png)
+   ![alt text](videojuegos-db-punto5-7.png)
+   ![alt text](videojuegos-db-punto5-8.png)
+
 
 **Verificación:**
-![alt text](videojuegos-db-punto4-1.png)
+Aquí tienes un link que te lleva a la página web y al Github:
+## [Videojuegos Api](https://videjuegos-api-5.onrender.com/) | [GitHub](https://github.com/7crack/videjuegos-api-5)
+![alt text](videojuegos-db-punto5-9.png)
