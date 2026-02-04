@@ -1,0 +1,21 @@
+# Environment variables
+.env
+.env.*
+.env.postgres
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

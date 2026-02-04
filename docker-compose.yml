@@ -10,15 +10,21 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - fastapi-db
-  
-  fastapi-db:
-    image: mysql
-    container_name: fastapi-db-videojuegos
+      - fastapi-db-postgres
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: videojuegosdb
-      MYSQL_USER: joel
-      MYSQL_PASSWORD: 1234
+      - DATABASE_URL=postgresql+psycopg2://postgres:1234@fastapi-db-postgres:5432/videojuegosdb
+  
+  fastapi-db-postgres:
+    image: postgres:16
+    container_name: fastapi-db-postgres
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: postgres
+      POSTGRES_DB: videojuegosdb
     ports:
-      - "3306:3306"
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
